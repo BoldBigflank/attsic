@@ -10,8 +10,10 @@
 
 using namespace cocos2d;
 using namespace CocosDenshion;
+using namespace std;
 
 #define PTM_RATIO 32
+#define MAP_COUNT 1
 
 enum {
     kTagParentNode = 1,
@@ -67,14 +69,39 @@ CCAffineTransform PhysicsSprite::nodeToParentTransform(void)
     return m_sTransform;
 }
 
+string maps[] = {
+    "map.tmx"
+};
+
 HelloWorld::HelloWorld()
 {
+    screenPosition = 0; // Position in pixels
+    screenSpeed = 450; // Pixels per second
+    
     setTouchEnabled( true );
     setAccelerometerEnabled( true );
 
-    CCSize s = CCDirector::sharedDirector()->getWinSize();
+//    CCSize s = CCDirector::sharedDirector()->getWinSize();
     // init physics
     this->initPhysics();
+    
+    
+    mapIndex = 0;
+    mapHeight = 0;
+    CCTMXTiledMap *tileMap;
+    tileMap = new CCTMXTiledMap();
+    tileMap->initWithTMXFile(maps[mapIndex].c_str());
+    _background = tileMap->layerNamed("Background");
+    
+    mapIndex = (mapIndex + 1) % MAP_COUNT;
+    mapHeight = tileMap->getMapSize().height * tileMap->getTileSize().height;
+    
+    tileMaps.push_back(tileMap);
+    this->addChild(tileMap);
+    
+    
+    
+    
 
     CCSpriteBatchNode *parent = CCSpriteBatchNode::create("blocks.png", 100);
     m_pSpriteTexture = parent->getTexture();
@@ -82,13 +109,13 @@ HelloWorld::HelloWorld()
     addChild(parent, 0, kTagParentNode);
 
 
-    addNewSpriteAtPosition(ccp(s.width/2, s.height/2));
-
-    CCLabelTTF *label = CCLabelTTF::create("Tap screen", "Marker Felt", 32);
-    addChild(label, 0);
-    label->setColor(ccc3(0,0,255));
-    label->setPosition(ccp( s.width/2, s.height-50));
-    
+//    addNewSpriteAtPosition(ccp(s.width/2, s.height/2));
+//
+//    CCLabelTTF *label = CCLabelTTF::create("Tap screen", "Marker Felt", 32);
+//    addChild(label, 0);
+//    label->setColor(ccc3(0,0,255));
+//    label->setPosition(ccp( s.width/2, s.height-50));
+//    
     scheduleUpdate();
 }
 
@@ -238,6 +265,38 @@ void HelloWorld::update(float dt)
             myActor->setRotation( -1 * CC_RADIANS_TO_DEGREES(b->GetAngle()) );
         }    
     }
+    
+    // Update the screen position
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    
+    screenPosition += (screenSpeed * dt);
+    this->setViewPoint();
+//    float mapHeight = _tileMap->getMapSize().height * _tileMap->getTileSize().height;
+    
+    // Load the next screen
+    if( screenPosition > mapHeight - winSize.height ){
+        CCLog("Starting new one");
+        CCTMXTiledMap *nextMap;
+        nextMap = new CCTMXTiledMap();
+        nextMap->initWithTMXFile(maps[mapIndex].c_str());
+        nextMap->setPosition(ccp(0, mapHeight));
+        
+        mapIndex = (mapIndex + 1) % MAP_COUNT;
+        mapHeight += nextMap->getMapSize().height * nextMap->getTileSize().height;
+        tileMaps.push_back(nextMap);
+        this->addChild(nextMap);
+    }
+    
+    // Unload the previous screen
+    if(tileMaps.size() > 2){
+        CCLog("Erasing old one");
+        // Unload the previous one
+        CCTMXTiledMap *old = (CCTMXTiledMap*)tileMaps[0];
+        this->removeChild(old);
+        old->release();
+        tileMaps.erase(tileMaps.begin());
+    }
+        
 }
 
 void HelloWorld::ccTouchesEnded(CCSet* touches, CCEvent* event)
@@ -257,8 +316,26 @@ void HelloWorld::ccTouchesEnded(CCSet* touches, CCEvent* event)
         
         location = CCDirector::sharedDirector()->convertToGL(location);
         
+        location = this->convertToNodeSpace(location);
+        
         addNewSpriteAtPosition( location );
     }
+}
+
+void HelloWorld::setViewPoint() {
+    
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    
+    int x = winSize.width/2;
+    int y = MAX(screenPosition, winSize.height/2);
+    CCTMXTiledMap *map = (CCTMXTiledMap*)tileMaps[0];
+    x = MIN(x, (map->getMapSize().width * map->getTileSize().width) - winSize.width / 2);
+//    y = MIN(y, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - winSize.height/2);
+    CCPoint actualPosition = ccp(x, y);
+    
+    CCPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
+    CCPoint viewPoint = ccpSub(centerOfView, actualPosition);
+    this->setPosition(viewPoint);
 }
 
 CCScene* HelloWorld::scene()

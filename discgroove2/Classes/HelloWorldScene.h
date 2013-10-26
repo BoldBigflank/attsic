@@ -12,6 +12,8 @@
 #include "cocos2d.h"
 #include "Box2D.h"
 
+using namespace cocos2d;
+
 class PhysicsSprite : public cocos2d::CCSprite
 {
 public:
@@ -38,10 +40,18 @@ public:
     virtual void draw();
     virtual void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
     void update(float dt);
+    void setViewPoint();
     
 private:
     b2World* world;
     cocos2d::CCTexture2D* m_pSpriteTexture; // weak ref
+    int mapIndex;
+    std::vector<CCTMXTiledMap*> tileMaps;
+    int mapHeight;
+    CCTMXLayer *_background;
+    float screenPosition;
+    float screenSpeed;
+
 };
 
 #endif // __HELLO_WORLD_H__
