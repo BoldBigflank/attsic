@@ -42,11 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "discgroove2/Classes/HelloWorldScene.cpp"
-            timestampString = "404567709.535106"
+            timestampString = "404578850.280902"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "403"
-            endingLineNumber = "403">
+            startingLineNumber = "471"
+            endingLineNumber = "471"
+            landmarkName = "HelloWorld::newGame()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

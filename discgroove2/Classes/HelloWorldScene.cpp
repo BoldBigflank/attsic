@@ -13,7 +13,7 @@ using namespace CocosDenshion;
 using namespace std;
 
 #define PTM_RATIO 32
-#define MAP_COUNT 1
+#define MAP_COUNT 5
 #define MAX_DODGE_DISTANCE 72
 #define DODGE_THRESHOLD 20.0
 #define INITIAL_SCREEN_SPEED 250.0
@@ -73,17 +73,59 @@ CCAffineTransform PhysicsSprite::nodeToParentTransform(void)
 }
 
 string maps[] = {
-    "intro.tmx"
+    "intro.tmx",
+    "map.tmx",
+    "map1.tmx",
+    "map2.tmx",
+    "map3.tmx"
+    
 };
 
 HelloWorld::HelloWorld()
 {
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     screenPosition = 512; // Position in pixels
     screenSpeed = INITIAL_SCREEN_SPEED; // Pixels per second
+    
+    gameInProgress = false;
     
     setTouchEnabled( true );
     setAccelerometerEnabled( true );
 
+    
+    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
+                                                          "button.png",
+                                                          "button-pressed.png",
+                                                          this,
+                                                          menu_selector(HelloWorld::newGame) );
+    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width /2, 128) );
+    CCLabelTTF *newGameLabel = CCLabelTTF::create("NEW GAME", "Arial", 48);
+    newGameLabel->setPosition(ccp(pCloseItem->getContentSize().width/2, pCloseItem->getContentSize().height/2 ));
+    pCloseItem->addChild(newGameLabel);
+    
+    // create menu, it's an autorelease object
+    _gameMenu = CCMenu::create(pCloseItem, NULL);
+    _gameMenu->setPosition( CCPointZero );
+    HelloWorld::addChild(_gameMenu, 10);
+    
+    // HUD Score Label
+    _scoreLabel = new CCLabelTTF();
+    _scoreLabel->initWithString("Score", "Arial", 32);
+    _scoreLabel->setPosition(ccp(winSize.width * 0.2, winSize.height * 0.9));
+    HelloWorld::addChild(_scoreLabel);
+    
+    _highScoreLabel = new CCLabelTTF();
+    int highScore = CCUserDefault::sharedUserDefault()->getIntegerForKey("highScore");
+    if(!highScore) highScore = 0;
+    
+    char scoreStr[17] = {0};
+    sprintf(scoreStr, "High: %d", (int)highScore);
+    _highScoreLabel->initWithString(scoreStr, "Arial", 32);
+    _highScoreLabel->setPosition(ccp(winSize.width * 0.8, winSize.height * 0.9));
+    HelloWorld::addChild(_highScoreLabel);
+
+    
+    
 //    CCSize s = CCDirector::sharedDirector()->getWinSize();
     // init physics
     this->initPhysics();
@@ -137,6 +179,12 @@ HelloWorld::HelloWorld()
 //    label->setPosition(ccp( s.width/2, s.height-50));
 //    
     scheduleUpdate();
+    
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("explode.wav");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("walking.mp3");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("tinkle.wav");
+    gameInProgress = true;
+    gameOver();
 }
 
 HelloWorld::~HelloWorld()
@@ -288,7 +336,8 @@ void HelloWorld::update(float dt)
 
     // Update the screen position
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-
+    if(gameInProgress)
+        score += dt*10;
     
     // Update the player
     CCPoint playerPosition = player->getPosition();
@@ -305,6 +354,15 @@ void HelloWorld::update(float dt)
         int sign = (player->getDiveAngle() < 0) ? -1 : 1;
         playerPosition.x += sign * MAX_DODGE_DISTANCE;
         player->setIsTilted(true);
+        
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("tinkle.wav");
+        CCParticleSystemQuad *explosion = new CCParticleSystemQuad();
+        explosion->initWithFile("beeTail.plist");
+        //    explosion->setScale(globalYScale);
+        explosion->setEmissionRate(800);
+        explosion->setPosition(player->getPosition());
+        HelloWorld::addChild(explosion);
+        explosion->setAutoRemoveOnFinish(true);
     }
     
 //    player->setDodge( player->getDodge() - (playerPosition.x - player->getPositionX()));
@@ -358,7 +416,16 @@ void HelloWorld::update(float dt)
         old->release();
         tileMaps.erase(tileMaps.begin());
     }
-        
+    _gameMenu->setPosition(ccp(0, screenPosition-512));
+    _scoreLabel->setPosition(ccp(_scoreLabel->getPosition().x, _scoreLabel->getPosition().y + screenSpeed * dt));
+    char scoreStr[17] = {0};
+    sprintf(scoreStr, "Score: %d", (int)score);
+    _scoreLabel->setString( scoreStr );
+    
+    
+    _highScoreLabel->setPosition(ccp(_highScoreLabel->getPosition().x, _highScoreLabel->getPosition().y + screenSpeed * dt));
+    
+    
 }
 
 void HelloWorld::ccTouchesEnded(CCSet* touches, CCEvent* event)
@@ -380,7 +447,7 @@ void HelloWorld::ccTouchesEnded(CCSet* touches, CCEvent* event)
         
         location = this->convertToNodeSpace(location);
         
-        addNewSpriteAtPosition( location );
+//        addNewSpriteAtPosition( location );
     }
 }
 
@@ -401,17 +468,52 @@ void HelloWorld::setViewPoint() {
 }
 
 void HelloWorld::newGame(){
-    // Reset the score
-    
-    // Hide the menu
+    if(!gameInProgress){
+        gameInProgress = true;
+        player->newGame();
+        // Reset the score
+        screenSpeed = INITIAL_SCREEN_SPEED;
+        score = 0;
+        // Hide the menu
+        _gameMenu->setVisible(false);
+        walkingInt = CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("walking.mp3", true);
+    }
     
 }
 
 void HelloWorld::gameOver(){
-    // Blow up the player
-    
-    
-    // Show the menu
+    if(gameInProgress){
+        gameInProgress = false;
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->stopEffect(walkingInt);
+        // Blow up the player
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("explode.wav");
+        CCParticleSystemQuad *explosion = new CCParticleSystemQuad();
+        explosion->initWithFile("explosion.plist");
+        //    explosion->setScale(globalYScale);
+        explosion->setEmissionRate(800);
+        explosion->setPosition(player->getPosition());
+        HelloWorld::addChild(explosion);
+        explosion->setAutoRemoveOnFinish(true);
+        
+        player->gameOver();
+        
+        
+        screenSpeed = 0;
+        
+        int highScore = CCUserDefault::sharedUserDefault()->getIntegerForKey("highScore");
+        if((int)score > highScore){
+            CCUserDefault::sharedUserDefault()->setIntegerForKey("highScore", (int)score);
+            CCUserDefault::sharedUserDefault()->flush();
+            char scoreStr[17] = {0};
+            sprintf(scoreStr, "High: %d", (int)score);
+            
+            _highScoreLabel->setString(scoreStr);
+        }
+        
+        
+        // Show the menu
+        _gameMenu->setVisible(true);
+    }
 }
 
 CCScene* HelloWorld::scene()
@@ -427,6 +529,7 @@ CCScene* HelloWorld::scene()
     
     // add menu layer
     CCLayer *menuLayer = new CCLayer();
+    menuLayer->setTag(8);
     menuLayer->init();
     
     /////////////////////////////
@@ -434,36 +537,17 @@ CCScene* HelloWorld::scene()
     //    you may modify it.
     
     // add a "close" icon to exit the progress. it's an autorelease object
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                                          "button.png",
-                                                          "button-pressed.png",
-                                                          layer,
-                                                          menu_selector(HelloWorld::newGame) );
-    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width /2, 128) );
-    CCLabelTTF *newGameLabel = CCLabelTTF::create("NEW GAME", "Arial", 48);
-    newGameLabel->setPosition(ccp(pCloseItem->getContentSize().width/2, pCloseItem->getContentSize().height/2 ));
-    pCloseItem->addChild(newGameLabel);
-    
-    // create menu, it's an autorelease object
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-    pMenu->setPosition( CCPointZero );
-    menuLayer->addChild(pMenu, 1);
+
+//    menuLayer->addChild(pMenu, 1);
     
     /////////////////////////////
     // 3. add your codes below...
     
     // add a label shows "Hello World"
     // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Score: 0", "Thonburi", 34);
 
     // ask director the window size
     CCSize size = CCDirector::sharedDirector()->getWinSize();
-    
-    // position the label on the center of the screen
-    pLabel->setPosition( ccp(size.width / 5, size.height - 20) );
-    
-    // add the label as a child to this layer
-    menuLayer->addChild(pLabel, 1);
     
 //    // add "HelloWorld" splash screen"
 //    CCSprite* pSprite = CCSprite::create("HelloWorld.png");

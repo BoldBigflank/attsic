@@ -69,6 +69,14 @@ bool Player::setUpPlayer(char* skin){
     return true;
 }
 
+void Player::newGame(){
+    skeletonNode->setAnimation("walk", true);
+}
+
+void Player::gameOver(){
+    skeletonNode->setAnimation("idle", true);
+}
+
 void Player::update(float dt){
     // Move the player a step
     if(angle_ < -1 * MAX_ROTATION) angle_= -1 * MAX_ROTATION;

@@ -56,7 +56,14 @@ private:
     float screenPosition;
     float screenSpeed;
     Player *player;
-    int score;
+    float score;
+    bool gameInProgress;
+    unsigned int walkingInt;
+    int highScore;
+    
+    CCMenu *_gameMenu;
+    CCLabelTTF *_highScoreLabel;
+    CCLabelTTF *_scoreLabel;
     
 
 };

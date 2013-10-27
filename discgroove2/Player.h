@@ -30,6 +30,8 @@ public:
     virtual void update(float dt);
     virtual bool init();
     bool setUpPlayer(char* skin);
+    void gameOver();
+    void newGame();
     
     b2Body *_body;
     

@@ -303,6 +303,9 @@
 		FA873955181CE8A900F7E6C4 /* tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = FA873953181CE8A900F7E6C4 /* tiles.png */; };
 		FA873D11181CFEF300F7E6C4 /* button-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA873D0F181CFEF300F7E6C4 /* button-pressed.png */; };
 		FA873D12181CFEF300F7E6C4 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = FA873D10181CFEF300F7E6C4 /* button.png */; };
+		FA873D16181D429B00F7E6C4 /* map3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = FA873D13181D429A00F7E6C4 /* map3.tmx */; };
+		FA873D17181D429B00F7E6C4 /* map2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = FA873D14181D429A00F7E6C4 /* map2.tmx */; };
+		FA873D18181D429B00F7E6C4 /* map1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = FA873D15181D429A00F7E6C4 /* map1.tmx */; };
 		FA9846F4181356B1007E56BF /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = FA9846F2181356B1007E56BF /* map.tmx */; };
 		FA9846F5181356B1007E56BF /* Terrain.tsx in Resources */ = {isa = PBXBuildFile; fileRef = FA9846F3181356B1007E56BF /* Terrain.tsx */; };
 		FA9846F718135804007E56BF /* terrain.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9846F618135804007E56BF /* terrain.png */; };
@@ -310,6 +313,13 @@
 		FAB178D918189139001D1CA3 /* skeleton.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB178D618189139001D1CA3 /* skeleton.png */; };
 		FAB178DA18189139001D1CA3 /* skeleton.json in Resources */ = {isa = PBXBuildFile; fileRef = FAB178D718189139001D1CA3 /* skeleton.json */; };
 		FAB1791E181891DB001D1CA3 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAB1791C181891DB001D1CA3 /* Player.cpp */; };
+		FAD271FA181D46E40078794A /* explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD271F8181D46E40078794A /* explosion.plist */; };
+		FAD271FB181D46E40078794A /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD271F9181D46E40078794A /* fire.png */; };
+		FAD271FD181D4A920078794A /* explode.wav in Resources */ = {isa = PBXBuildFile; fileRef = FAD271FC181D4A920078794A /* explode.wav */; };
+		FAD271FF181D4C340078794A /* sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD271FE181D4C340078794A /* sparkle.png */; };
+		FAD27201181D4EC70078794A /* walking.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FAD27200181D4EC70078794A /* walking.mp3 */; };
+		FAD27203181D502D0078794A /* beeTail.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD27202181D502D0078794A /* beeTail.plist */; };
+		FAD27205181D580F0078794A /* tinkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = FAD27204181D580F0078794A /* tinkle.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -955,6 +965,9 @@
 		FA873953181CE8A900F7E6C4 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiles.png; path = Resources/tiles.png; sourceTree = "<group>"; };
 		FA873D0F181CFEF300F7E6C4 /* button-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-pressed.png"; path = "Resources/button-pressed.png"; sourceTree = "<group>"; };
 		FA873D10181CFEF300F7E6C4 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button.png; path = Resources/button.png; sourceTree = "<group>"; };
+		FA873D13181D429A00F7E6C4 /* map3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = map3.tmx; path = Resources/map3.tmx; sourceTree = "<group>"; };
+		FA873D14181D429A00F7E6C4 /* map2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = map2.tmx; path = Resources/map2.tmx; sourceTree = "<group>"; };
+		FA873D15181D429A00F7E6C4 /* map1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = map1.tmx; path = Resources/map1.tmx; sourceTree = "<group>"; };
 		FA9846F2181356B1007E56BF /* map.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = map.tmx; path = Resources/map.tmx; sourceTree = "<group>"; };
 		FA9846F3181356B1007E56BF /* Terrain.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Terrain.tsx; path = Resources/Terrain.tsx; sourceTree = "<group>"; };
 		FA9846F618135804007E56BF /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = terrain.png; path = Resources/terrain.png; sourceTree = "<group>"; };
@@ -963,6 +976,13 @@
 		FAB178D718189139001D1CA3 /* skeleton.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = skeleton.json; path = Resources/skeleton.json; sourceTree = "<group>"; };
 		FAB1791C181891DB001D1CA3 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		FAB1791D181891DB001D1CA3 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		FAD271F8181D46E40078794A /* explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = explosion.plist; path = Resources/explosion.plist; sourceTree = "<group>"; };
+		FAD271F9181D46E40078794A /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fire.png; path = Resources/fire.png; sourceTree = "<group>"; };
+		FAD271FC181D4A920078794A /* explode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = explode.wav; path = Resources/explode.wav; sourceTree = "<group>"; };
+		FAD271FE181D4C340078794A /* sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sparkle.png; path = Resources/sparkle.png; sourceTree = "<group>"; };
+		FAD27200181D4EC70078794A /* walking.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = walking.mp3; path = Resources/walking.mp3; sourceTree = "<group>"; };
+		FAD27202181D502D0078794A /* beeTail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = beeTail.plist; path = Resources/beeTail.plist; sourceTree = "<group>"; };
+		FAD27204181D580F0078794A /* tinkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tinkle.wav; path = Resources/tinkle.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1037,6 +1057,16 @@
 		FA38962A18131C3C002B363E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FAD27204181D580F0078794A /* tinkle.wav */,
+				FAD27202181D502D0078794A /* beeTail.plist */,
+				FAD27200181D4EC70078794A /* walking.mp3 */,
+				FAD271FE181D4C340078794A /* sparkle.png */,
+				FAD271FC181D4A920078794A /* explode.wav */,
+				FAD271F8181D46E40078794A /* explosion.plist */,
+				FAD271F9181D46E40078794A /* fire.png */,
+				FA873D13181D429A00F7E6C4 /* map3.tmx */,
+				FA873D14181D429A00F7E6C4 /* map2.tmx */,
+				FA873D15181D429A00F7E6C4 /* map1.tmx */,
 				FA873D0F181CFEF300F7E6C4 /* button-pressed.png */,
 				FA873D10181CFEF300F7E6C4 /* button.png */,
 				FA873952181CE8A900F7E6C4 /* intro.tmx */,
@@ -2346,20 +2376,29 @@
 			files = (
 				FA873D11181CFEF300F7E6C4 /* button-pressed.png in Resources */,
 				FA873D12181CFEF300F7E6C4 /* button.png in Resources */,
+				FAD271FA181D46E40078794A /* explosion.plist in Resources */,
 				FA38963C18131C3C002B363E /* Icon.png in Resources */,
 				FA3896DF18131C3D002B363E /* ChangeLog in Resources */,
+				FAD27205181D580F0078794A /* tinkle.wav in Resources */,
+				FA873D18181D429B00F7E6C4 /* map1.tmx in Resources */,
 				FA38962C18131C3C002B363E /* CloseNormal.png in Resources */,
+				FA873D17181D429B00F7E6C4 /* map2.tmx in Resources */,
 				FA9846F4181356B1007E56BF /* map.tmx in Resources */,
 				FA38963818131C3C002B363E /* Icon-Small.png in Resources */,
+				FAD271FB181D46E40078794A /* fire.png in Resources */,
 				FA38963418131C3C002B363E /* Icon-72.png in Resources */,
+				FA873D16181D429B00F7E6C4 /* map3.tmx in Resources */,
 				FA38963218131C3C002B363E /* HelloWorld.png in Resources */,
+				FAD271FD181D4A920078794A /* explode.wav in Resources */,
 				FA38963618131C3C002B363E /* Icon-Small-50.png in Resources */,
 				FA38964018131C3C002B363E /* iTunesArtwork in Resources */,
 				FA38963A18131C3C002B363E /* Icon-Small@2x.png in Resources */,
 				FAB178DA18189139001D1CA3 /* skeleton.json in Resources */,
 				FAB178D818189139001D1CA3 /* skeleton.atlas in Resources */,
 				FA38963018131C3C002B363E /* Default.png in Resources */,
+				FAD27203181D502D0078794A /* beeTail.plist in Resources */,
 				FA38962E18131C3C002B363E /* CloseSelected.png in Resources */,
+				FAD27201181D4EC70078794A /* walking.mp3 in Resources */,
 				FA873954181CE8A900F7E6C4 /* intro.tmx in Resources */,
 				FAB178D918189139001D1CA3 /* skeleton.png in Resources */,
 				FA9846F718135804007E56BF /* terrain.png in Resources */,
@@ -2367,6 +2406,7 @@
 				FA9846F5181356B1007E56BF /* Terrain.tsx in Resources */,
 				FA38985318131C40002B363E /* project.pbxproj in Resources */,
 				FA3899F418131C45002B363E /* blocks.png in Resources */,
+				FAD271FF181D4C340078794A /* sparkle.png in Resources */,
 				FA873955181CE8A900F7E6C4 /* tiles.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
