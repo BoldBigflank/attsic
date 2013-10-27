@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PLTDevice.h"
 
 
-@interface RootViewController : UIViewController {
+@interface RootViewController : UIViewController <PLTDeviceConnectionDelegate, PLTDeviceInfoObserver> {
 
 }
+
+@property(nonatomic, strong)	PLTDevice				*device;
+
 
 @end

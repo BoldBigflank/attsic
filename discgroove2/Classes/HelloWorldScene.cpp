@@ -99,8 +99,19 @@ HelloWorld::HelloWorld()
     tileMaps.push_back(tileMap);
     this->addChild(tileMap);
     
+    CCTMXObjectGroup *objects = tileMap->objectGroupNamed("Objects");
+    CCAssert(objects != NULL, "'Objects' object group not found");
+    CCDictionary *spawnPoint = objects->objectNamed("SpawnPoint");
     
+    CCAssert(spawnPoint != NULL, "SpawnPoint object not found");
+    float x = spawnPoint->valueForKey("x")->floatValue();
+    float y = spawnPoint->valueForKey("y")->floatValue();
     
+    this->player = new Player();
+    player->init();
+    this->player->setPosition(ccp(x*PTM_RATIO, y*PTM_RATIO));
+    this->addChild(this->player);
+
     
 
     CCSpriteBatchNode *parent = CCSpriteBatchNode::create("blocks.png", 100);

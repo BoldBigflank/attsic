@@ -11,6 +11,7 @@
 // When you import this file, you import all the cocos2d classes
 #include "cocos2d.h"
 #include "Box2D.h"
+#include "Player.h"
 
 using namespace cocos2d;
 
@@ -51,6 +52,7 @@ private:
     CCTMXLayer *_background;
     float screenPosition;
     float screenSpeed;
+    Player *player;
 
 };
 
