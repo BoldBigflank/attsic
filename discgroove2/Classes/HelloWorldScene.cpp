@@ -70,13 +70,13 @@ CCAffineTransform PhysicsSprite::nodeToParentTransform(void)
 }
 
 string maps[] = {
-    "map.tmx"
+    "intro.tmx"
 };
 
 HelloWorld::HelloWorld()
 {
     screenPosition = 0; // Position in pixels
-    screenSpeed = 450; // Pixels per second
+    screenSpeed = 150; // Pixels per second
     
     setTouchEnabled( true );
     setAccelerometerEnabled( true );
@@ -93,6 +93,11 @@ HelloWorld::HelloWorld()
     tileMap->initWithTMXFile(maps[mapIndex].c_str());
     _background = tileMap->layerNamed("Background");
     
+    CCTMXLayer *meta;
+    meta = tileMap->layerNamed("Meta");
+    meta->setVisible(false);
+    
+    
     mapIndex = (mapIndex + 1) % MAP_COUNT;
     mapHeight = tileMap->getMapSize().height * tileMap->getTileSize().height;
     
@@ -101,7 +106,7 @@ HelloWorld::HelloWorld()
     
     CCTMXObjectGroup *objects = tileMap->objectGroupNamed("Objects");
     CCAssert(objects != NULL, "'Objects' object group not found");
-    CCDictionary *spawnPoint = objects->objectNamed("SpawnPoint");
+    CCDictionary *spawnPoint = objects->objectNamed("Player");
     
     CCAssert(spawnPoint != NULL, "SpawnPoint object not found");
     float x = spawnPoint->valueForKey("x")->floatValue();
@@ -109,8 +114,9 @@ HelloWorld::HelloWorld()
     
     this->player = new Player();
     player->init();
-    this->player->setPosition(ccp(x*PTM_RATIO, y*PTM_RATIO));
-    this->addChild(this->player);
+    player->setTag(543);
+    this->player->setPosition(ccp(x, y));
+    addChild(this->player);
 
     
 
@@ -277,6 +283,10 @@ void HelloWorld::update(float dt)
         }    
     }
     
+    
+    // Update the player
+    player->setPosition(ccp(player->getPosition().x, player->getPosition().y + screenSpeed * dt));
+    
     // Update the screen position
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
@@ -291,15 +301,19 @@ void HelloWorld::update(float dt)
         nextMap = new CCTMXTiledMap();
         nextMap->initWithTMXFile(maps[mapIndex].c_str());
         nextMap->setPosition(ccp(0, mapHeight));
+
+        CCTMXLayer *meta;
+        meta = nextMap->layerNamed("Meta"); //meta->setLayerName("Meta");
+        meta->setVisible(false);
         
         mapIndex = (mapIndex + 1) % MAP_COUNT;
         mapHeight += nextMap->getMapSize().height * nextMap->getTileSize().height;
         tileMaps.push_back(nextMap);
-        this->addChild(nextMap);
+        this->addChild(nextMap, -1);
     }
     
     // Unload the previous screen
-    if(tileMaps.size() > 2){
+    if(tileMaps.size() > 3){
         CCLog("Erasing old one");
         // Unload the previous one
         CCTMXTiledMap *old = (CCTMXTiledMap*)tileMaps[0];
@@ -356,6 +370,7 @@ CCScene* HelloWorld::scene()
     
     // add layer as a child to scene
     CCLayer* layer = new HelloWorld();
+    layer->setTag(443);
     scene->addChild(layer);
     layer->release();
     

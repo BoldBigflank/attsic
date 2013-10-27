@@ -103,10 +103,14 @@
 - (void)PLTDevice:(PLTDevice *)aDevice didUpdateInfo:(PLTInfo *)theInfo
 {
 	NSLog(@"PLTDevice: %@ didUpdateInfo: %@", aDevice, theInfo);
+    HelloWorld *gameLayer = ( HelloWorld* ) cocos2d::CCDirector::sharedDirector()->getRunningScene()->getChildByTag(443);
+    cocos2d::CCSprite *player = ( cocos2d::CCSprite* ) gameLayer->getChildByTag(543);
 	
 	if ([theInfo isKindOfClass:[PLTOrientationTrackingInfo class]]) {
 		PLTEulerAngles eulerAngles = ((PLTOrientationTrackingInfo *)theInfo).eulerAngles;
 //		self.headingLabel.text = [NSString stringWithFormat:@"%ldº", lroundf(eulerAngles.x)];
+        player->setRotation(-2.4f * eulerAngles.x);
+        player->setDiveAngle(eulerAngles.y);
 //		self.pitchLabel.text = [NSString stringWithFormat:@"%ldº", lroundf(eulerAngles.y)];
 //		self.rollLabel.text = [NSString stringWithFormat:@"%ldº", lroundf(eulerAngles.z)];
 	}
@@ -132,6 +136,9 @@
 		PLTTapsInfo *tapsInfo = (PLTTapsInfo *)theInfo;
 //		NSString *directionString = NSStringFromTapDirection(tapsInfo.direction);
 //		self.tapsLabel.text = [NSString stringWithFormat:@"%u in %@", tapsInfo.taps, directionString];
+        if(tapsInfo.taps > 0){
+            [self.device setCalibration:nil forService:PLTServiceOrientationTracking];
+        }
 //		[self startTapsResetTimer];
 	}
 	else if ([theInfo isKindOfClass:[PLTMagnetometerCalibrationInfo class]]) {

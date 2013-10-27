@@ -1,0 +1,159 @@
+
+skeleton.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+blue/arm
+  rotate: false
+  xy: 182, 37
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+blue/foot
+  rotate: false
+  xy: 330, 42
+  size: 30, 38
+  orig: 30, 38
+  offset: 0, 0
+  index: -1
+blue/forearm
+  rotate: false
+  xy: 296, 38
+  size: 32, 44
+  orig: 32, 44
+  offset: 0, 0
+  index: -1
+blue/head
+  rotate: false
+  xy: 230, 84
+  size: 36, 42
+  orig: 36, 42
+  offset: 0, 0
+  index: -1
+blue/leg
+  rotate: false
+  xy: 476, 81
+  size: 26, 45
+  orig: 26, 45
+  offset: 0, 0
+  index: -1
+blue/shoulders
+  rotate: false
+  xy: 2, 84
+  size: 112, 42
+  orig: 112, 42
+  offset: 0, 0
+  index: -1
+flare
+  rotate: false
+  xy: 2, 28
+  size: 21, 10
+  orig: 21, 10
+  offset: 0, 0
+  index: -1
+green/arm
+  rotate: false
+  xy: 220, 37
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+green/foot
+  rotate: false
+  xy: 362, 42
+  size: 30, 38
+  orig: 30, 38
+  offset: 0, 0
+  index: -1
+green/forearm
+  rotate: false
+  xy: 344, 82
+  size: 32, 44
+  orig: 32, 44
+  offset: 0, 0
+  index: -1
+green/head
+  rotate: false
+  xy: 268, 84
+  size: 36, 42
+  orig: 36, 42
+  offset: 0, 0
+  index: -1
+green/leg
+  rotate: false
+  xy: 394, 31
+  size: 26, 45
+  orig: 26, 45
+  offset: 0, 0
+  index: -1
+green/shoulders
+  rotate: false
+  xy: 2, 40
+  size: 112, 42
+  orig: 112, 42
+  offset: 0, 0
+  index: -1
+red/arm
+  rotate: false
+  xy: 258, 37
+  size: 36, 45
+  orig: 36, 45
+  offset: 0, 0
+  index: -1
+red/foot
+  rotate: false
+  xy: 330, 2
+  size: 30, 38
+  orig: 30, 38
+  offset: 0, 0
+  index: -1
+red/forearm
+  rotate: false
+  xy: 378, 82
+  size: 32, 44
+  orig: 32, 44
+  offset: 0, 0
+  index: -1
+red/head
+  rotate: false
+  xy: 306, 84
+  size: 36, 42
+  orig: 36, 42
+  offset: 0, 0
+  index: -1
+red/leg
+  rotate: false
+  xy: 422, 31
+  size: 26, 45
+  orig: 26, 45
+  offset: 0, 0
+  index: -1
+red/shoulders
+  rotate: false
+  xy: 116, 84
+  size: 112, 42
+  orig: 112, 42
+  offset: 0, 0
+  index: -1
+template
+  rotate: false
+  xy: 116, 14
+  size: 64, 68
+  orig: 64, 68
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: false
+  xy: 412, 78
+  size: 30, 48
+  orig: 30, 48
+  offset: 0, 0
+  index: -1
+weapon2
+  rotate: false
+  xy: 444, 78
+  size: 30, 48
+  orig: 30, 48
+  offset: 0, 0
+  index: -1
