@@ -42,6 +42,7 @@ public:
     virtual void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
     void update(float dt);
     void setViewPoint();
+    void newGame();
     
 private:
     b2World* world;
@@ -53,6 +54,8 @@ private:
     float screenPosition;
     float screenSpeed;
     Player *player;
+    int score;
+    
 
 };
 

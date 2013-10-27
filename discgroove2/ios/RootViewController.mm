@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "HelloWorldScene.h"
+#import "Player.h"
 
 
 @implementation RootViewController
@@ -104,12 +105,12 @@
 {
 	NSLog(@"PLTDevice: %@ didUpdateInfo: %@", aDevice, theInfo);
     HelloWorld *gameLayer = ( HelloWorld* ) cocos2d::CCDirector::sharedDirector()->getRunningScene()->getChildByTag(443);
-    cocos2d::CCSprite *player = ( cocos2d::CCSprite* ) gameLayer->getChildByTag(543);
+    Player *player = ( Player* ) gameLayer->getChildByTag(543);
 	
 	if ([theInfo isKindOfClass:[PLTOrientationTrackingInfo class]]) {
 		PLTEulerAngles eulerAngles = ((PLTOrientationTrackingInfo *)theInfo).eulerAngles;
 //		self.headingLabel.text = [NSString stringWithFormat:@"%ldº", lroundf(eulerAngles.x)];
-        player->setRotation(-2.4f * eulerAngles.x);
+        player->setAngle(-2.4f * eulerAngles.x);
         player->setDiveAngle(eulerAngles.y);
 //		self.pitchLabel.text = [NSString stringWithFormat:@"%ldº", lroundf(eulerAngles.y)];
 //		self.rollLabel.text = [NSString stringWithFormat:@"%ldº", lroundf(eulerAngles.z)];

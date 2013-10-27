@@ -67,6 +67,7 @@ bool Player::setUpPlayer(char* skin){
 
 void Player::update(float dt){
     // Move the player a step
+    this->setRotation(angle_);
     
     // Find the nearest baddy
         // If it's in range

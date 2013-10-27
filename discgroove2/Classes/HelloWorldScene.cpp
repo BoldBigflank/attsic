@@ -282,13 +282,27 @@ void HelloWorld::update(float dt)
             myActor->setRotation( -1 * CC_RADIANS_TO_DEGREES(b->GetAngle()) );
         }    
     }
-    
-    
-    // Update the player
-    player->setPosition(ccp(player->getPosition().x, player->getPosition().y + screenSpeed * dt));
-    
+
     // Update the screen position
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+
+    
+    // Update the player
+    CCPoint playerPosition = player->getPosition();
+    float playerRotation = player->getRotation();
+    
+    playerPosition.x = playerPosition.x +
+        screenSpeed * dt * sin(CC_DEGREES_TO_RADIANS(playerRotation));
+    CCLog("%f, %f", sin(CC_DEGREES_TO_RADIANS(playerRotation)), playerPosition.x );
+    
+    
+    playerPosition.y = playerPosition.y + screenSpeed * dt;
+    
+    // Test the point to move
+    
+    
+    player->setPosition(playerPosition);
+    
     
     screenPosition += (screenSpeed * dt);
     this->setViewPoint();
@@ -363,6 +377,10 @@ void HelloWorld::setViewPoint() {
     this->setPosition(viewPoint);
 }
 
+void HelloWorld::newGame(){
+    
+}
+
 CCScene* HelloWorld::scene()
 {
     // 'scene' is an autorelease object
@@ -374,5 +392,54 @@ CCScene* HelloWorld::scene()
     scene->addChild(layer);
     layer->release();
     
+    // add menu layer
+    CCLayer *menuLayer = new CCLayer();
+    menuLayer->init();
+    
+    /////////////////////////////
+    // 2. add a menu item with "X" image, which is clicked to quit the program
+    //    you may modify it.
+    
+    // add a "close" icon to exit the progress. it's an autorelease object
+    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
+                                                          "button.png",
+                                                          "button-pressed.png",
+                                                          layer,
+                                                          menu_selector(HelloWorld::newGame) );
+    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width /2, 128) );
+    CCLabelTTF *newGameLabel = CCLabelTTF::create("NEW GAME", "Arial", 48);
+    newGameLabel->setPosition(ccp(pCloseItem->getContentSize().width/2, pCloseItem->getContentSize().height/2 ));
+    pCloseItem->addChild(newGameLabel);
+    
+    // create menu, it's an autorelease object
+    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
+    pMenu->setPosition( CCPointZero );
+    menuLayer->addChild(pMenu, 1);
+    
+    /////////////////////////////
+    // 3. add your codes below...
+    
+    // add a label shows "Hello World"
+    // create and initialize a label
+    CCLabelTTF* pLabel = CCLabelTTF::create("Score: 0", "Thonburi", 34);
+
+    // ask director the window size
+    CCSize size = CCDirector::sharedDirector()->getWinSize();
+    
+    // position the label on the center of the screen
+    pLabel->setPosition( ccp(size.width / 5, size.height - 20) );
+    
+    // add the label as a child to this layer
+    menuLayer->addChild(pLabel, 1);
+    
+//    // add "HelloWorld" splash screen"
+//    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+//    
+//    // position the sprite on the center of the screen
+//    pSprite->setPosition( ccp(size.width/2, size.height/2) );
+//    
+//    // add the sprite as a child to this layer
+//    menuLayer->addChild(pSprite, 0);
+    scene->addChild(menuLayer);
     return scene;
 }
