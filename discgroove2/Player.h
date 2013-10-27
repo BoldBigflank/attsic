@@ -36,6 +36,10 @@ public:
     CC_SYNTHESIZE(int, hp_, Hp);
     CC_SYNTHESIZE(float, angle_, Angle);
     CC_SYNTHESIZE(float, diveAngle_, DiveAngle);
+    CC_SYNTHESIZE(float, dodge_, Dodge);
+    CC_SYNTHESIZE(bool, isTilted_, IsTilted);
+    
+    
     
 };
 

@@ -43,6 +43,8 @@ public:
     void update(float dt);
     void setViewPoint();
     void newGame();
+    void gameOver();
+    bool canMoveToPosition(CCPoint position);
     
 private:
     b2World* world;

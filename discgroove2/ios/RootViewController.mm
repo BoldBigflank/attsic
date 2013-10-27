@@ -111,7 +111,7 @@
 		PLTEulerAngles eulerAngles = ((PLTOrientationTrackingInfo *)theInfo).eulerAngles;
 //		self.headingLabel.text = [NSString stringWithFormat:@"%ldº", lroundf(eulerAngles.x)];
         player->setAngle(-2.4f * eulerAngles.x);
-        player->setDiveAngle(eulerAngles.y);
+        player->setDiveAngle(eulerAngles.z);
 //		self.pitchLabel.text = [NSString stringWithFormat:@"%ldº", lroundf(eulerAngles.y)];
 //		self.rollLabel.text = [NSString stringWithFormat:@"%ldº", lroundf(eulerAngles.z)];
 	}
@@ -119,7 +119,7 @@
 //		self.wearingStateLabel.text = (((PLTWearingStateInfo *)theInfo).isBeingWorn ? @"yes" : @"no");
 	}
 	else if ([theInfo isKindOfClass:[PLTProximityInfo class]]) {
-		PLTProximityInfo *proximityInfp = (PLTProximityInfo *)theInfo;
+		PLTProximityInfo *proximityInfo = (PLTProximityInfo *)theInfo;
 //		self.mobileProximityLabel.text = NSStringFromProximity(proximityInfp.mobileProximity);
 //		self.pcProximityLabel.text = NSStringFromProximity(proximityInfp.pcProximity);
 	}

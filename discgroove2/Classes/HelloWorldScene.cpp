@@ -14,6 +14,9 @@ using namespace std;
 
 #define PTM_RATIO 32
 #define MAP_COUNT 1
+#define MAX_DODGE_DISTANCE 72
+#define DODGE_THRESHOLD 20.0
+#define INITIAL_SCREEN_SPEED 250.0
 
 enum {
     kTagParentNode = 1,
@@ -75,8 +78,8 @@ string maps[] = {
 
 HelloWorld::HelloWorld()
 {
-    screenPosition = 0; // Position in pixels
-    screenSpeed = 150; // Pixels per second
+    screenPosition = 512; // Position in pixels
+    screenSpeed = INITIAL_SCREEN_SPEED; // Pixels per second
     
     setTouchEnabled( true );
     setAccelerometerEnabled( true );
@@ -292,12 +295,32 @@ void HelloWorld::update(float dt)
     float playerRotation = player->getRotation();
     
     playerPosition.x = playerPosition.x +
-        screenSpeed * dt * sin(CC_DEGREES_TO_RADIANS(playerRotation));
-    CCLog("%f, %f", sin(CC_DEGREES_TO_RADIANS(playerRotation)), playerPosition.x );
+        screenSpeed * dt * sin(CC_DEGREES_TO_RADIANS(playerRotation))
+        + dt * player->getDodge();
     
+    // Add dodge effects
+    if(abs(player->getDiveAngle()) < DODGE_THRESHOLD){
+        player->setIsTilted(false);
+    } else if (!player->getIsTilted() && abs(player->getDiveAngle()) > DODGE_THRESHOLD ) {
+        int sign = (player->getDiveAngle() < 0) ? -1 : 1;
+        playerPosition.x += sign * MAX_DODGE_DISTANCE;
+        player->setIsTilted(true);
+    }
+    
+//    player->setDodge( player->getDodge() - (playerPosition.x - player->getPositionX()));
+    
+    if( !canMoveToPosition(playerPosition)){
+        // Reset it
+        playerPosition.x = player->getPositionX();
+    }
     
     playerPosition.y = playerPosition.y + screenSpeed * dt;
     
+    if( !canMoveToPosition(playerPosition)){
+        // Game over
+        gameOver();
+        return;
+    }
     // Test the point to move
     
     
@@ -378,7 +401,17 @@ void HelloWorld::setViewPoint() {
 }
 
 void HelloWorld::newGame(){
+    // Reset the score
     
+    // Hide the menu
+    
+}
+
+void HelloWorld::gameOver(){
+    // Blow up the player
+    
+    
+    // Show the menu
 }
 
 CCScene* HelloWorld::scene()
@@ -442,4 +475,41 @@ CCScene* HelloWorld::scene()
 //    menuLayer->addChild(pSprite, 0);
     scene->addChild(menuLayer);
     return scene;
+}
+
+bool HelloWorld::canMoveToPosition(CCPoint position)
+{
+    for(int i=0; i<tileMaps.size(); i++){
+        CCTMXTiledMap *map = tileMaps[i];
+        if(position.y > map->getPositionY() &&
+           position.y < map->getPositionY() + map->getTileSize().height * map->getMapSize().height){
+            int y = ((map->getMapSize().height * map->getTileSize().height + map->getPositionY()) - position.y) / map->getTileSize().height;
+                int x = position.x / map->getTileSize().width;
+            
+            CCPoint tilePoint = ccp(x,y);
+            if(x<0 || x>=map->getMapSize().width || y < 0 || y >= map->getMapSize().height) return false;
+//            return ccp(x, y);
+            
+            
+            map->layerNamed("Meta");
+            CCTMXLayer *meta;
+            meta = map->layerNamed("Meta");
+            int tileGid = meta->tileGIDAt(tilePoint);
+            if(tileGid) {
+                CCDictionary *properties = map->propertiesForGID(tileGid);
+                if(properties){
+                    CCString *type = new CCString();
+                    *type = *properties->valueForKey("type");
+                    if(type && type->compare("block") == 0){
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            }
+            return true;
+            
+        }
+    }
+    return true;
 }

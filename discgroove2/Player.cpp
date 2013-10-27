@@ -17,6 +17,9 @@
 
 // Player settings
 #define MAX_COOLDOWN 1.0
+#define MAX_DODGE_DISTANCE 100
+#define MAX_ROTATION 60
+#define DODGE_TIME 0.5
 
 using namespace spine;
 
@@ -27,6 +30,7 @@ bool Player::init()
 }
 
 bool Player::setUpPlayer(char* skin){
+    isTilted_ = false;
     skeletonNode = new CCSkeletonAnimation("skeleton.json", "skeleton.atlas");
     skeletonNode->setMix("walk", "jump", 0.0f);
     skeletonNode->setMix("walk", "idle", 0.2f);
@@ -37,7 +41,7 @@ bool Player::setUpPlayer(char* skin){
     
     
     skeletonNode->timeScale = 1.0f;
-    skeletonNode->debugBones = true;
+    skeletonNode->debugBones = false;
     skeletonNode->setSkin(skin);
     skeletonNode->setSlotsToSetupPose();
     
@@ -67,7 +71,11 @@ bool Player::setUpPlayer(char* skin){
 
 void Player::update(float dt){
     // Move the player a step
+    if(angle_ < -1 * MAX_ROTATION) angle_= -1 * MAX_ROTATION;
+    if(angle_ > MAX_ROTATION) angle_= MAX_ROTATION;
+    
     this->setRotation(angle_);
+    
     
     // Find the nearest baddy
         // If it's in range
