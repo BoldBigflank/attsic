@@ -510,9 +510,12 @@ void HelloWorld::gameOver(){
             _highScoreLabel->setString(scoreStr);
         }
         
-        
         // Show the menu
         _gameMenu->setVisible(true);
+        
+        // -H "X-M2X-KEY: 03bd07263eed57e8f4e567f1e2b2bcd9"
+        // PUT http://api-m2x.att.com/v1/feeds/bfec6b6b2cabd167bf284f884bca1af0/streams/distance
+        // value=score
     }
 }
 

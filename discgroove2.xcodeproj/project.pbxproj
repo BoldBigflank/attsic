@@ -276,6 +276,12 @@
 		FA3899EF18131C45002B363E /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA3899EE18131C44002B363E /* AppDelegate.cpp */; };
 		FA3899F218131C45002B363E /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA3899F118131C45002B363E /* HelloWorldScene.cpp */; };
 		FA3899F418131C45002B363E /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3899F318131C45002B363E /* blocks.png */; };
+		FA3BCD05181DB71300B11775 /* ATT API Platform Advertising SDK for iOS.pdf in Resources */ = {isa = PBXBuildFile; fileRef = FA3BCD00181DB71300B11775 /* ATT API Platform Advertising SDK for iOS.pdf */; };
+		FA3BCD06181DB71300B11775 /* libATTAdLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3BCD03181DB71300B11775 /* libATTAdLibrary.a */; };
+		FA3BCD07181DB71300B11775 /* Read Me.txt in Resources */ = {isa = PBXBuildFile; fileRef = FA3BCD04181DB71300B11775 /* Read Me.txt */; };
+		FA3BCD09181DB74A00B11775 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3BCD08181DB74A00B11775 /* SystemConfiguration.framework */; };
+		FA3BCD0B181DB75200B11775 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3BCD0A181DB75200B11775 /* CoreLocation.framework */; };
+		FA3BCD0D181DB75D00B11775 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3BCD0C181DB75D00B11775 /* Security.framework */; };
 		FA873850181C7BE400F7E6C4 /* libPLTDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA87384F181C7BE400F7E6C4 /* libPLTDevice.a */; };
 		FA873852181C7C0600F7E6C4 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA873851181C7C0600F7E6C4 /* ExternalAccessory.framework */; };
 		FA87393D181CB0A400F7E6C4 /* Animation.c in Sources */ = {isa = PBXBuildFile; fileRef = FA873912181CB0A400F7E6C4 /* Animation.c */; };
@@ -309,6 +315,7 @@
 		FA9846F4181356B1007E56BF /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = FA9846F2181356B1007E56BF /* map.tmx */; };
 		FA9846F5181356B1007E56BF /* Terrain.tsx in Resources */ = {isa = PBXBuildFile; fileRef = FA9846F3181356B1007E56BF /* Terrain.tsx */; };
 		FA9846F718135804007E56BF /* terrain.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9846F618135804007E56BF /* terrain.png */; };
+		FAA1B91C181DB0C800C526D3 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA1B91B181DB0C800C526D3 /* ball.png */; };
 		FAB178D818189139001D1CA3 /* skeleton.atlas in Resources */ = {isa = PBXBuildFile; fileRef = FAB178D518189139001D1CA3 /* skeleton.atlas */; };
 		FAB178D918189139001D1CA3 /* skeleton.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB178D618189139001D1CA3 /* skeleton.png */; };
 		FAB178DA18189139001D1CA3 /* skeleton.json in Resources */ = {isa = PBXBuildFile; fileRef = FAB178D718189139001D1CA3 /* skeleton.json */; };
@@ -903,6 +910,15 @@
 		FA3899F018131C45002B363E /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		FA3899F118131C45002B363E /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
 		FA3899F318131C45002B363E /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		FA3BCD00181DB71300B11775 /* ATT API Platform Advertising SDK for iOS.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "ATT API Platform Advertising SDK for iOS.pdf"; sourceTree = "<group>"; };
+		FA3BCD01181DB71300B11775 /* ATTAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTAdView.h; sourceTree = "<group>"; };
+		FA3BCD02181DB71300B11775 /* ATTAdViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTAdViewDelegate.h; sourceTree = "<group>"; };
+		FA3BCD03181DB71300B11775 /* libATTAdLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libATTAdLibrary.a; sourceTree = "<group>"; };
+		FA3BCD04181DB71300B11775 /* Read Me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Read Me.txt"; sourceTree = "<group>"; };
+		FA3BCD08181DB74A00B11775 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FA3BCD0A181DB75200B11775 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FA3BCD0C181DB75D00B11775 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FA3BCD0E181DCFEA00B11775 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FA873841181C7BE400F7E6C4 /* PLTCalibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTCalibration.h; sourceTree = "<group>"; };
 		FA873842181C7BE400F7E6C4 /* PLTConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTConfiguration.h; sourceTree = "<group>"; };
 		FA873843181C7BE400F7E6C4 /* PLTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTDevice.h; sourceTree = "<group>"; };
@@ -971,6 +987,7 @@
 		FA9846F2181356B1007E56BF /* map.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = map.tmx; path = Resources/map.tmx; sourceTree = "<group>"; };
 		FA9846F3181356B1007E56BF /* Terrain.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Terrain.tsx; path = Resources/Terrain.tsx; sourceTree = "<group>"; };
 		FA9846F618135804007E56BF /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = terrain.png; path = Resources/terrain.png; sourceTree = "<group>"; };
+		FAA1B91B181DB0C800C526D3 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = Resources/ball.png; sourceTree = "<group>"; };
 		FAB178D518189139001D1CA3 /* skeleton.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skeleton.atlas; path = Resources/skeleton.atlas; sourceTree = "<group>"; };
 		FAB178D618189139001D1CA3 /* skeleton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skeleton.png; path = Resources/skeleton.png; sourceTree = "<group>"; };
 		FAB178D718189139001D1CA3 /* skeleton.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = skeleton.json; path = Resources/skeleton.json; sourceTree = "<group>"; };
@@ -990,6 +1007,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3BCD0D181DB75D00B11775 /* Security.framework in Frameworks */,
+				FA3BCD0B181DB75200B11775 /* CoreLocation.framework in Frameworks */,
+				FA3BCD09181DB74A00B11775 /* SystemConfiguration.framework in Frameworks */,
 				FA873852181C7C0600F7E6C4 /* ExternalAccessory.framework in Frameworks */,
 				FA38961E18131C3C002B363E /* OpenAL.framework in Frameworks */,
 				FA3899E918131C44002B363E /* libwebsockets.a in Frameworks */,
@@ -998,6 +1018,7 @@
 				FA38978F18131C3F002B363E /* libcurl.a in Frameworks */,
 				FA38961A18131C3C002B363E /* QuartzCore.framework in Frameworks */,
 				FA38962218131C3C002B363E /* AVFoundation.framework in Frameworks */,
+				FA3BCD06181DB71300B11775 /* libATTAdLibrary.a in Frameworks */,
 				FA38962818131C3C002B363E /* CoreGraphics.framework in Frameworks */,
 				FA873850181C7BE400F7E6C4 /* libPLTDevice.a in Frameworks */,
 				FA38961C18131C3C002B363E /* OpenGLES.framework in Frameworks */,
@@ -1029,6 +1050,10 @@
 		FA38961818131C3C002B363E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA3BCD0E181DCFEA00B11775 /* CFNetwork.framework */,
+				FA3BCD0C181DB75D00B11775 /* Security.framework */,
+				FA3BCD0A181DB75200B11775 /* CoreLocation.framework */,
+				FA3BCD08181DB74A00B11775 /* SystemConfiguration.framework */,
 				FA873851181C7C0600F7E6C4 /* ExternalAccessory.framework */,
 				FA38961918131C3C002B363E /* QuartzCore.framework */,
 				FA38961B18131C3C002B363E /* OpenGLES.framework */,
@@ -1045,6 +1070,7 @@
 		FA38962918131C3C002B363E /* discgroove2 */ = {
 			isa = PBXGroup;
 			children = (
+				FA3BCCFF181DB71300B11775 /* ATTAdKit-iOS-2.0.1 */,
 				FA38962A18131C3C002B363E /* Resources */,
 				FA38964218131C3C002B363E /* ios */,
 				FA38964B18131C3C002B363E /* libs */,
@@ -1057,6 +1083,7 @@
 		FA38962A18131C3C002B363E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FAA1B91B181DB0C800C526D3 /* ball.png */,
 				FAD27204181D580F0078794A /* tinkle.wav */,
 				FAD27202181D502D0078794A /* beeTail.plist */,
 				FAD27200181D4EC70078794A /* walking.mp3 */,
@@ -2236,6 +2263,18 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		FA3BCCFF181DB71300B11775 /* ATTAdKit-iOS-2.0.1 */ = {
+			isa = PBXGroup;
+			children = (
+				FA3BCD00181DB71300B11775 /* ATT API Platform Advertising SDK for iOS.pdf */,
+				FA3BCD01181DB71300B11775 /* ATTAdView.h */,
+				FA3BCD02181DB71300B11775 /* ATTAdViewDelegate.h */,
+				FA3BCD03181DB71300B11775 /* libATTAdLibrary.a */,
+				FA3BCD04181DB71300B11775 /* Read Me.txt */,
+			);
+			path = "ATTAdKit-iOS-2.0.1";
+			sourceTree = "<group>";
+		};
 		FA87383F181C7BE400F7E6C4 /* PLTDevice */ = {
 			isa = PBXGroup;
 			children = (
@@ -2380,6 +2419,7 @@
 				FA38963C18131C3C002B363E /* Icon.png in Resources */,
 				FA3896DF18131C3D002B363E /* ChangeLog in Resources */,
 				FAD27205181D580F0078794A /* tinkle.wav in Resources */,
+				FAA1B91C181DB0C800C526D3 /* ball.png in Resources */,
 				FA873D18181D429B00F7E6C4 /* map1.tmx in Resources */,
 				FA38962C18131C3C002B363E /* CloseNormal.png in Resources */,
 				FA873D17181D429B00F7E6C4 /* map2.tmx in Resources */,
@@ -2389,6 +2429,8 @@
 				FA38963418131C3C002B363E /* Icon-72.png in Resources */,
 				FA873D16181D429B00F7E6C4 /* map3.tmx in Resources */,
 				FA38963218131C3C002B363E /* HelloWorld.png in Resources */,
+				FA3BCD07181DB71300B11775 /* Read Me.txt in Resources */,
+				FA3BCD05181DB71300B11775 /* ATT API Platform Advertising SDK for iOS.pdf in Resources */,
 				FAD271FD181D4A920078794A /* explode.wav in Resources */,
 				FA38963618131C3C002B363E /* Icon-Small-50.png in Resources */,
 				FA38964018131C3C002B363E /* iTunesArtwork in Resources */,
@@ -2772,11 +2814,13 @@
 					/Users/alex/discgroove2/discgroove2/libs/cocos2dx/platform/third_party/ios/libraries,
 					/Users/alex/discgroove2/discgroove2/libs/libwebsockets/ios/lib,
 					/Users/alex/discgroove2/discgroove2/PLTDevice/lib,
+					"/Users/alex/discgroove2/discgroove2/ATTAdKit-iOS-2.0.1",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-lz",
 					"-lsqlite3",
+					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"discgroove2/libs\"";
@@ -2799,11 +2843,13 @@
 					/Users/alex/discgroove2/discgroove2/libs/cocos2dx/platform/third_party/ios/libraries,
 					/Users/alex/discgroove2/discgroove2/libs/libwebsockets/ios/lib,
 					/Users/alex/discgroove2/discgroove2/PLTDevice/lib,
+					"/Users/alex/discgroove2/discgroove2/ATTAdKit-iOS-2.0.1",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-lz",
 					"-lsqlite3",
+					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"discgroove2/libs\"";

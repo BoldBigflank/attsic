@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "PLTDevice.h"
 
-
 @interface RootViewController : UIViewController <PLTDeviceConnectionDelegate, PLTDeviceInfoObserver> {
 
 }

@@ -1,0 +1,17 @@
+Version: 2.0.1
+Date 8/20/2013
+Updates:
+Implemented logic to update the access token with the refresh token in OAuth
+Changed the adRefreshRate to be a minimum of 30 seconds
+Fixed memory leaks
+How to use;
+1. Add the "ATTAdKit" folder to your workspace
+2. X-Code Project - Right Click - Add - Existing Frameworks
+	a) CoreLocation.framework
+	b) Security.framework
+	c) SystemConfiguration.framework
+click add finally.
+3. In Build Settings, update the Linker flag to "-ObjC -all_load"
+4. Follow the instructions in Ad View Tasks on how to add code to include the ad component using ATTAdView class and receives delegate callbacks.
+5. Build your application using AT&T Ad API.
+6. Sample Apps - Update the APP_KEY and APP_SECRET values that is registered for your application in the developer portal or appKey and appsecret with the respective keys.

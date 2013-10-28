@@ -9,9 +9,16 @@
 #import "RootViewController.h"
 #import "HelloWorldScene.h"
 #import "Player.h"
+#import "ATTAdView.h"
 
 
 @implementation RootViewController
+
+
+#define APP_KEY @"1jcvjepoouvh720bzll1pwfe9vlr7wup"
+#define APP_SECRET @"nmts2pic6wd0evwuigrcvw0qs253fauw"
+#define UDID @"1"
+
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -29,13 +36,26 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Create the ATTAdView object
+    ATTAdView *attAdView = [[ATTAdView alloc]init];
+    // Set properties to filter the ad content
+    [attAdView setZipCode:98117];
+    [attAdView setPremium:PremiumBoth];
+    [attAdView setAgeGroup:@"26-35"];
+    // Initialize authentication/authorization, ad service call and
+    // draw the ad component with the received response
+    attAdView = [attAdView initWithFrame:CGRectMake(0, 0,
+                                                    self.view.frame.size.width, 50) appKey:APP_KEY
+                               appsecret:APP_SECRET category:@"other" udid:UDID];
+    // Add the view
+    [self.view addSubview:attAdView];
 }
  
-*/
+
 // Override to allow orientations other than the default portrait orientation.
 // This method is deprecated on ios6
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -73,7 +93,7 @@
 
 - (void)PLTDeviceDidOpenConnection:(PLTDevice *)aDevice
 {
-	NSLog(@"PLTDeviceDidOpenConnection: %@", aDevice);
+//	NSLog(@"PLTDeviceDidOpenConnection: %@", aDevice);
 	
 	NSError *err = [self.device subscribe:self toService:PLTServiceOrientationTracking withMode:PLTSubscriptionModeOnChange minPeriod:0];
 	if (err) NSLog(@"Error: %@", err);
@@ -103,7 +123,7 @@
 
 - (void)PLTDevice:(PLTDevice *)aDevice didUpdateInfo:(PLTInfo *)theInfo
 {
-	NSLog(@"PLTDevice: %@ didUpdateInfo: %@", aDevice, theInfo);
+//	NSLog(@"PLTDevice: %@ didUpdateInfo: %@", aDevice, theInfo);
     HelloWorld *gameLayer = ( HelloWorld* ) cocos2d::CCDirector::sharedDirector()->getRunningScene()->getChildByTag(443);
     Player *player = ( Player* ) gameLayer->getChildByTag(543);
 	
@@ -158,7 +178,6 @@
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
